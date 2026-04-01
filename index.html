@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA 2026 World Cup Calendar</title>
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="/icons/icon-192x192.png">
+    <link rel="manifest" href="/manifest.json">
+    <title>Mundial 2026</title>
 </head>
 <body>
-    <h1>FIFA World Cup 2026 Calendar</h1>
-    <ul>
-        <li>June 8, 2026 - Opening Match</li>
-        <li>June 12-26, 2026 - Group Stage</li>
-        <li>June 30, 2026 - Round of 16</li>
-        <li>July 4-5, 2026 - Quarter-finals</li>
-        <li>July 9, 2026 - Semi-finals</li>
-        <li>July 13, 2026 - Final Match</li>
-    </ul>
+    <h1>Mundial 2026</h1>
+    <p>El mejor calendario para seguir el torneo.</p>
+
     <script>
-        // Service worker registration for PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                    console.log('Service Worker registered with scope:', registration.scope);
+                    console.log('Service Worker registrado con éxito:', registration.scope);
                 }, function(error) {
-                    console.log('Service Worker registration failed:', error);
+                    console.log('El registro del Service Worker falló:', error);
                 });
             });
         }

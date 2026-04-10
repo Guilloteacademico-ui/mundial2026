@@ -1,0 +1,66 @@
+{
+  "name": "Mundial FIFA 2026",
+  "short_name": "Mundial 2026",
+  "description": "Calendario completo del Mundial FIFA 2026 con predicciones, favoritos y notificaciones",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#003087",
+  "theme_color": "#003087",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["sports", "entertainment"],
+  "lang": "es-AR",
+  "dir": "ltr",
+  "shortcuts": [
+    {
+      "name": "Ver Partidos",
+      "short_name": "Partidos",
+      "description": "Ver todos los partidos del Mundial",
+      "url": "./?tab=partidos",
+      "icons": [
+        {
+          "src": "./icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Mis Favoritos",
+      "short_name": "Favoritos",
+      "description": "Ver mis partidos favoritos",
+      "url": "./?tab=favoritos",
+      "icons": [
+        {
+          "src": "./icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Predicciones",
+      "short_name": "Predicciones",
+      "description": "Ver mis predicciones",
+      "url": "./?tab=predicciones",
+      "icons": [
+        {
+          "src": "./icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

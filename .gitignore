@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Development
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+venv/
+*.egg-info/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# OS files
+Thumbs.db
+desktop.ini

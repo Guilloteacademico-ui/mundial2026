@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#003087">
+    <meta name="description" content="Calendario completo del Mundial FIFA 2026 con notificaciones, predicciones y seguimiento de partidos">
+    <link rel="icon" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <title>Mundial FIFA 2026</title>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🏆 Mundial FIFA 2026</h1>
+                <div class="header-actions">
+                    <button id="notif-btn" class="icon-btn" title="Notificaciones">
+                        <span class="icon">🔔</span>
+                    </button>
+                    <button id="filter-btn" class="icon-btn" title="Filtros">
+                        <span class="icon">⚙️</span>
+                    </button>
+                </div>
+            </div>
+            <nav class="tabs">
+                <button class="tab active" data-tab="partidos">Partidos</button>
+                <button class="tab" data-tab="favoritos">Favoritos</button>
+                <button class="tab" data-tab="predicciones">Predicciones</button>
+                <button class="tab" data-tab="resultados">Resultados</button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Tab: Partidos -->
+            <section id="tab-partidos" class="tab-content active">
+                <div class="filters">
+                    <select id="fase-filter" class="filter-select">
+                        <option value="all">Todas las fases</option>
+                        <option value="grupos">Fase de Grupos</option>
+                        <option value="octavos">Octavos de Final</option>
+                        <option value="cuartos">Cuartos de Final</option>
+                        <option value="semi">Semifinales</option>
+                        <option value="final">Final</option>
+                    </select>
+                    <select id="fecha-filter" class="filter-select">
+                        <option value="all">Todas las fechas</option>
+                        <option value="hoy">Hoy</option>
+                        <option value="manana">Mañana</option>
+                        <option value="semana">Esta semana</option>
+                    </select>
+                </div>
+                <div id="partidos-list" class="partidos-list">
+                    <div class="loading">Cargando partidos...</div>
+                </div>
+            </section>
+
+            <!-- Tab: Favoritos -->
+            <section id="tab-favoritos" class="tab-content">
+                <div id="favoritos-list" class="partidos-list">
+                    <div class="empty-state">
+                        <span class="empty-icon">⭐</span>
+                        <p>No tenés partidos favoritos</p>
+                        <small>Tocá la estrella en cualquier partido para agregarlo</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: Predicciones -->
+            <section id="tab-predicciones" class="tab-content">
+                <div class="predictions-header">
+                    <h2>Mis Predicciones</h2>
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-value" id="total-predicciones">0</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="aciertos">0</span>
+                            <span class="stat-label">Aciertos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="porcentaje">0%</span>
+                            <span class="stat-label">Precisión</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="predicciones-list" class="partidos-list">
+                    <div class="empty-state">
+                        <span class="empty-icon">🎯</span>
+                        <p>No hiciste predicciones todavía</p>
+                        <small>Predecí el resultado de los partidos antes que empiecen</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: Resultados -->
+            <section id="tab-resultados" class="tab-content">
+                <div id="resultados-list" class="partidos-list">
+                    <div class="loading">Cargando resultados...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal: Predicción -->
+    <div id="prediction-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Predecir Resultado</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="prediction-match">
+                    <div class="team">
+                        <img class="flag" id="pred-flag1" src="" alt="">
+                        <span id="pred-team1"></span>
+                    </div>
+                    <div class="prediction-inputs">
+                        <input type="number" id="pred-score1" min="0" max="20" value="0">
+                        <span>-</span>
+                        <input type="number" id="pred-score2" min="0" max="20" value="0">
+                    </div>
+                    <div class="team">
+                        <img class="flag" id="pred-flag2" src="" alt="">
+                        <span id="pred-team2"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-prediction" class="btn btn-secondary">Cancelar</button>
+                <button id="save-prediction" class="btn btn-primary">Guardar Predicción</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Notificaciones -->
+    <div id="notif-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notificaciones</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="notif-option">
+                    <label>
+                        <input type="checkbox" id="notif-favoritos">
+                        <span>Notificar mis partidos favoritos (1 hora antes)</span>
+                    </label>
+                </div>
+                <div class="notif-option">
+                    <label>
+                        <input type="checkbox" id="notif-argentina">
+                        <span>Notificar partidos de Argentina</span>
+                    </label>
+                </div>
+                <div class="notif-option">
+                    <label>
+                        <input type="checkbox" id="notif-eliminatorias">
+                        <span>Notificar Octavos, Cuartos, Semis y Final</span>
+                    </label>
+                </div>
+                <p class="notif-info">
+                    <small>⚠️ Necesitás permitir notificaciones en tu navegador</small>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button id="save-notif" class="btn btn-primary">Guardar Preferencias</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                    console.log('Service Worker registrado con éxito:', registration.scope);
+                }, function(error) {
+                    console.log('El registro del Service Worker falló:', error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
